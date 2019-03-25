@@ -1,0 +1,29 @@
+//Message Queue Writer process
+#include<stdio.h>
+#include<sys/ipc.h>
+#include<sys/msg.h>
+#define key 20
+struct mesg_buffer
+{
+	int type;
+	char text[100];
+}msg;
+
+void main()
+{
+	
+	int msgid;
+	
+	
+	
+	
+ 	msgid = msgget(20, 0666 | IPC_CREAT);
+	msg.type = 1;
+	printf("WRITE DATA : \t");
+	scanf("%s",msg.text);
+	
+	msgsnd(msgid, &msg, sizeof(msg), 0);
+	
+	printf("Data sent : %s \n", msg.text);
+}
+	
