@@ -1,0 +1,28 @@
+//Message Queue Reader process
+#include<stdio.h>
+#include<sys/ipc.h>
+#include<sys/msg.h>
+#define key 20
+struct mesg_buffer
+{
+	int type;
+	char text[100];
+}msg;
+
+void main()
+{
+
+	int msgid;
+
+
+	
+ 	msgid = msgget(20, 0666);
+	
+	msgrcv(msgid, &msg, sizeof(msg), 1, 0);
+	
+	printf("Data recieved : %s \n", msg.text);
+
+	msgctl(msgid, IPC_RMID, NULL);
+
+}
+	
